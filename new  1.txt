@@ -1,0 +1,35 @@
+ URL url =new URL(p_reg_url);
+                HttpURLConnection httpURLConnection =(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                String data = URLEncoder.encode("FName","UTF-8")+"="+URLEncoder.encode(FName,"UTF-8")+"&"+
+                        URLEncoder.encode("LName","UTF-8")+"="+URLEncoder.encode(LName,"UTF-8")+"&"+
+                        URLEncoder.encode("Passward","UTF-8")+"="+URLEncoder.encode(Passward,"UTF-8")+"&"+
+                        URLEncoder.encode("Mobile","UTF-8")+"="+URLEncoder.encode(Mobile,"UTF-8")+"&"+
+                        URLEncoder.encode("BirthDate","UTF-8")+"="+URLEncoder.encode(BirthDate,"UTF-8")+"&"+
+                        URLEncoder.encode("Weights","UTF-8")+"="+URLEncoder.encode(Weights,"UTF-8")+"&"+
+                        URLEncoder.encode("Heights","UTF-8")+"="+URLEncoder.encode(Heights,"UTF-8")+"&"+
+                        URLEncoder.encode("Email","UTF-8")+"="+URLEncoder.encode(EEmail,"UTF-8")+"&"+
+                        URLEncoder.encode("Gender","UTF-8")+"="+URLEncoder.encode(Gender,"UTF-8")+"&"+
+                        URLEncoder.encode("kind","UTF-8")+"="+URLEncoder.encode(kind,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                os.close();
+                InputStream is =httpURLConnection.getInputStream();
+                is.close();
+                return "regesteration success";
+
+
+
+            } catch (MalformedURLException e) {
+                Toast.makeText(ctx,e.toString(),Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            } catch (IOException e) {
+                Toast.makeText(ctx,e.toString(),Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+			
+			        String record_url="http://10.0.2.2/SelfCare/records.php";
